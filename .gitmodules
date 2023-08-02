@@ -1,0 +1,6 @@
+[submodule "stock-application"]
+	path = stock-application
+	url = https://github.com/rashmibhaskar/stock-application-client.git
+[submodule "stock-application-client"]
+	path = stock-application-client
+	url = https://github.com/rashmibhaskar/stock-application-client.git
