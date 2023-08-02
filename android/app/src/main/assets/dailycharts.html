@@ -1,0 +1,144 @@
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/data.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/drag-panes.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/indicators/indicators.js"></script>
+    <script src="https://code.highcharts.com/stock/indicators/volume-by-price.js"></script>
+</head>
+
+<body>
+<div id="container"></div>
+<script>
+        function makeAPICall(url) {
+            return fetch(url)
+                .then(response => response.json())
+                .then(json => json);
+        }
+        async function fetchCharts(ticker) {
+            console.log("FETCH", ticker);
+            var now_ = new Date()
+            var from_ = new Date(now_)
+            from_.setFullYear(now_.getFullYear() - 2)
+            response = await makeAPICall(`https://stock-frontend-1609.wl.r.appspot.com/company-history/${ticker}/D/${from_}/${now_}/second`);
+            if (!response) {
+                console.log("ERRRO");
+            } else {
+                console.log("DATA", response);
+                var o = []
+                var v = [];
+                for (var i = 0; i < response.t.length; i++) {
+                    o.push([response.t[i], response.o[i], response.h[i], response.l[i], response.c[i]])
+                    v.push([response.t[i], response.v[i]])
+                }
+                var groupingUnits = [[
+                    'week',
+                    [1]
+                ], [
+                    'month',
+                    [1, 2, 3, 4, 6]
+                ]]
+                Highcharts.stockChart('container', {
+                    rangeSelector: {
+                        selected: 2,
+                        enabled: true
+                    },
+                    title:
+                    {
+                        text: ticker + ' Historical'
+                    },
+                    subtitle:
+                    {
+                        text: 'With SMA and Volume by Price technical indicators'
+                    },
+                    navigator:
+                    {
+                        enabled: true
+                    },
+                    scrollbar:
+                    {
+                        enabled: true
+                    },
+                    yAxis: [{
+                        startOnTick: false,
+                        endOnTick: false,
+                        labels: {
+                            align: 'right',
+                            x: -3
+                        },
+                        title: {
+                            text: 'OHLC'
+                        },
+                        height: '60%',
+                        lineWidth: 2,
+                        resize: {
+                            enabled: true
+                        }
+                    }, {
+                        labels: {
+                            align: 'right',
+                            x: -3
+                        },
+                        title: {
+                            text: 'Volume'
+                        },
+                        top: '65%',
+                        height: '35%',
+                        offset: 0,
+                        lineWidth: 2
+                    }],
+
+                    tooltip: {
+                        split: true
+                    },
+
+                    plotOptions: {
+                        series: {
+                            dataGrouping: {
+                                units: groupingUnits
+                            }
+                        }
+                    },
+                    series: [{
+                        type: 'candlestick',
+                        name: ticker,
+                        id: ticker,
+                        zIndex: 2,
+                        data: o
+                    }, {
+                        type: 'column',
+                        name: 'Volume',
+                        id: 'volume',
+                        data: v,
+                        yAxis: 1
+                    }, {
+                        type: 'vbp',
+                        linkedTo: ticker,
+                        params: {
+                            volumeSeriesID: 'volume'
+                        },
+                        dataLabels: {
+                            enabled: false
+                        },
+                        zoneLines: {
+                            enabled: false
+                        }
+                    }, {
+                        type: 'sma',
+                        linkedTo: ticker,
+                        zIndex: 1,
+                        marker: {
+                            enabled: false
+                        }
+                    }]
+                });
+            }
+        }
+        window.onload = fetchCharts(ticker);
+    </script>
+</body>
+
+</html>

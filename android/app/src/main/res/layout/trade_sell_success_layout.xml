@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:paddingVertical="10dp"
+    android:background="@drawable/trade_success_background">
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="50dp"
+        android:id="@+id/ll1"
+        android:paddingVertical="20dp">
+
+        <TextView
+            android:id="@+id/congrats"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Congratulations!"
+            android:textSize="25dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/sell_success"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="You have successfully sold 2 shares of TSLA"
+            android:textColor="@color/white"
+            android:layout_margin="20dp"
+            android:textSize="15dp"
+            android:textStyle="italic"></TextView>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/done"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DONE"
+            android:textColor="@color/green"
+            android:layout_margin="20dp"
+            android:background="@drawable/trade_round_button">
+        </androidx.appcompat.widget.AppCompatButton>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</RelativeLayout>

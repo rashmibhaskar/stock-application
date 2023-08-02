@@ -1,0 +1,89 @@
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+</head>
+
+<body>
+<div id="container"></div>
+<script>
+        function makeAPICall(url) {
+            return fetch(url)
+                .then(response => response.json())
+                .then(json => json);
+        }
+        async function fetchCharts(ticker) {
+            console.log("FETCH", ticker);
+            recommendation = await makeAPICall(`https://stock-frontend-1609.wl.r.appspot.com/company-recommendation/${ticker}`);
+            if (!recommendation) {
+                console.log("ERRRO");
+            } else {
+                console.log("DATA", recommendation);
+                Highcharts.chart('container', {
+                    chart: {
+                        type: 'column',
+                        renderTo: 'contanier',
+                        marginRight: 10
+                    },
+                    title: {
+                        text: 'Recommendation Trends'
+                    },
+                    xAxis: {
+                        categories: recommendation.period
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: '#Analysis'
+                        },
+                        stackLabels: {
+                            enabled: true
+                        }
+                    },
+                    legend: {
+                        verticalAlign: 'bottom',
+                        borderColor: '#CCC',
+                        borderWidth: 1,
+                        shadow: false
+                    },
+                    plotOptions: {
+                        column: {
+                            stacking: 'normal',
+<!--                            dataLabels: {-->
+<!--                                enabled: true-->
+<!--                            }-->
+                        }
+                    },
+                    series: [{
+                        name: 'Strong Buy',
+                        data: recommendation.strongBuy,
+                        color: '#186f37'
+                    }, {
+                        name: 'Buy',
+                        data: recommendation.buy,
+                        color: '#1cb955'
+                    }, {
+                        name: 'Hold',
+                        data: recommendation.hold,
+                        color: '#b98b1d'
+                    }, {
+                        name: 'Sell',
+                        data: recommendation.sell,
+                        color: '#f45b5a'
+                    }, {
+                        name: 'Strong Sell',
+                        data: recommendation.strongSell,
+                        color: '#823535'
+                    }]
+                });
+            }
+        }
+        window.onload = fetchCharts(ticker);
+    </script>
+</body>
+
+</html>

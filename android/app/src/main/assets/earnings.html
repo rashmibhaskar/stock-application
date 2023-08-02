@@ -1,0 +1,57 @@
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+</head>
+
+<body>
+<div id="container"></div>
+<script>
+        function makeAPICall(url) {
+            return fetch(url)
+                .then(response => response.json())
+                .then(json => json);
+        }
+        async function fetchCharts(ticker) {
+            console.log("FETCH", ticker);
+            earnings = await makeAPICall(`https://stock-frontend-1609.wl.r.appspot.com/company-earnings/${ticker}`);
+            if (!earnings) {
+                console.log("ERRRO");
+            } else {
+                console.log("DATA", earnings);
+                Highcharts.chart('container', {
+                    chart: {
+                        type: 'spline',
+                        renderTo: 'container',
+                        marginRight: '10'
+                    },
+                    title: {
+                        text: 'Historical EPS Surprises'
+                    },
+                    xAxis: {
+                        categories: earnings.categories
+                    },
+                    yAxis: {
+                        title: {
+                            text: '#Quantity EPS'
+                        }
+                    },
+                    series: [{
+                        name: 'Actual',
+                        data: earnings.actual
+                    }, {
+                        name: 'Estimate',
+                        data: earnings.estimate
+                    }]
+                });
+            }
+        }
+        window.onload = fetchCharts(ticker);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:paddingVertical="10dp"
+    android:background="@drawable/custom_dialog_background">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/d_source"
+        android:text="Yahoo"
+        android:paddingHorizontal="20dp"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:paddingTop="20dp">
+    </TextView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/d_date"
+        android:text="March 20, 2022"
+        android:layout_below="@+id/d_source"
+        android:paddingHorizontal="20dp"
+        android:textSize="17dp"
+        android:paddingTop="10dp">
+    </TextView>
+
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/d_date"
+        android:layout_marginTop="20dp"
+        android:background="#D3D3D3" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/d_headline"
+        android:text="Headline Headline"
+        android:layout_below="@+id/divider"
+        android:paddingHorizontal="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:paddingTop="20dp"
+        android:textSize="20dp">
+    </TextView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/d_summary"
+        android:text="Summary Summary Summary Summary Summary vSummary cSummary Summary Summary Summary Summary Summary Summary Summary"
+        android:scrollHorizontally="true"
+        android:ellipsize="end"
+        android:maxLines="5"
+        android:layout_below="@+id/d_headline"
+        android:paddingHorizontal="20dp"
+        android:textColor="@color/black"
+        android:paddingTop="10dp"
+        android:textSize="15dp">
+    </TextView>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/d_summary"
+        android:orientation="horizontal"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="30dp">
+
+        <ImageButton
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:id="@+id/chrome"
+            android:background="@color/white"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_chrome"></ImageButton>
+
+
+
+        <ImageButton
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:id="@+id/twitter"
+            android:background="@color/white"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_twitter"></ImageButton>
+
+        <ImageButton
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:id="@+id/facebook"
+            android:background="@color/white"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_icons8_facebook"></ImageButton>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</RelativeLayout>

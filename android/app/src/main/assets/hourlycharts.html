@@ -1,0 +1,114 @@
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/data.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.13/moment-timezone-with-data-2012-2022.min.js"></script>
+</head>
+
+<body>
+<div id="container"></div>
+<script>
+        var stockprice;
+        var colour;
+        var marketStatus;
+        function makeAPICall(url) {
+            return fetch(url)
+                .then(response => response.json())
+                .then(json => json);
+        }
+        async function fetchStockPrice(ticker) {
+            stockprice = await makeAPICall(`https://stock-frontend-1609.wl.r.appspot.com/company-stock-price/${ticker}`)
+            if (stockprice) {
+                colour = stockprice.d > 0 ? colour = '#008000' : colour = '#af041d';
+                var today = new Date();
+                var s_time = new Date(stockprice.t * 1000);
+                var dif = (today.getTime() - s_time.getTime()) / 1000
+                dif /= 60
+                marketStatus = dif < 5 ? marketStatus = true : marketStatus = false;
+                console.log("COLOR", colour);
+                console.log("MARKET STATUS", marketStatus);
+                fetchLineChart(colour, marketStatus, ticker);
+            }
+        }
+        async function fetchLineChart(colour, marketStatus, ticker) {
+            console.log("FETCHING CHART DATA....");
+            var ctt;
+            if (marketStatus) {
+                var now_ = new Date()
+                var from_ = new Date(now_)
+                from_.setHours(now_.getHours() - 6)
+                response = await makeAPICall(`https://stock-frontend-1609.wl.r.appspot.com/company-history/${ticker}/5/${from_}/${now_}/first`);
+                console.log("RESPONSE", response);
+                ctt = response.t.map((e, i) => {
+                    return [e, response.c[i]];
+                });
+            }
+            else {
+                var to = new Date(this.stockprice.t * 1000)
+                var from = new Date(to)
+                from.setHours(to.getHours() - 6)
+                response = await makeAPICall(`https://stock-frontend-1609.wl.r.appspot.com/company-history/${ticker}/5/${from}/${to}/first`);
+                console.log("RESPONSE", response);
+                ctt = response.t.map((e, i) => {
+                    return [e, response.c[i]];
+                });
+            }
+            console.log("CTT", ctt)
+            Highcharts.setOptions({
+                time: {
+                    timezone: 'America/Los_Angeles'
+                }
+            });
+            Highcharts.chart('container', {
+                chart: {
+                    type: 'line'
+                },
+                title: {
+                    text: ticker + " Hourly Price Variation",
+                    style: {
+                        color: '#808080',
+                    }
+                },
+                tooltip: {
+                    valueDecimals: 2,
+                    split: true,
+                },
+                xAxis: {
+                    type: 'datetime',
+                    scrollbar: {
+                        enabled: true
+                    },
+                    crosshair: {
+                        enabled: true
+                    }
+                },
+                yAxis: {
+                    opposite: true,
+                    title: {
+                        enabled: false
+                    }
+                },
+                plotOptions: {
+                    series: {
+                        marker: {
+                            enabled: false
+                        }
+                    }
+                },
+                series: [{
+                    data: ctt,
+                    color: colour,
+                    name: ticker
+                }]
+            });
+        }
+        window.onload = fetchStockPrice(ticker);
+    </script>
+</body>
+
+</html>

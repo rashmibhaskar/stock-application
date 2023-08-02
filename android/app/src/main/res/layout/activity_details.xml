@@ -1,0 +1,683 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/progressbar1">
+
+        <ProgressBar
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/purple_500"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="170dp"
+            android:layout_marginTop="500dp"></ProgressBar>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/alldata">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+           android:id="@+id/txt_img"></ImageView>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linear_t"
+        android:paddingLeft="70dp"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ticker Name"
+            android:id="@+id/text_ticker"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="$531.09"
+            android:id="@+id/text_c"
+            android:paddingRight="25dp"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linear_b"
+        android:layout_below="@id/linear_t"
+        android:paddingLeft="70dp"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Company"
+            android:id="@+id/text_company"
+            android:textColor="@color/black"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="Aligned right"
+            android:paddingRight="25dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="^^"
+                android:id="@+id/img_trending"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12.09"
+                android:textStyle="bold"
+                android:id="@+id/text_d"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(1.02)%"
+                android:textStyle="bold"
+                android:id="@+id/text_dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="390dp"
+        android:layout_weight="1"
+        android:layout_below="@+id/linear_b">
+    </androidx.viewpager2.widget.ViewPager2>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view_pager"
+        app:tabMode="fixed"
+        app:tabIconTint="@color/your_color_selector"
+        app:tabIndicatorColor="@color/purple_700"
+        app:tabGravity="fill"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Porfolio"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:id="@+id/portfolio_head"
+        android:layout_below="@+id/tabs"
+        android:textColor="@color/black"
+        android:padding="10dp">
+    </TextView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="550dp"
+        android:id="@+id/portfolio_section">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <!-- col 1 -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Shares Owned:" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Avg. Cost/Share:" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Total Cost:" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Change:" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Market Value:" />
+            </LinearLayout>
+            <!-- col 1 end -->
+            <!-- col 2 -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="2"
+                    android:id="@+id/port_shares"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="$176.25"
+                    android:id="@+id/port_avg_cost"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="$352.50"
+                    android:id="@+id/port_total_cost"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="$-0.04"
+                    android:id="@+id/port_change"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="$352.46"
+                    android:id="@+id/port_market_value"/>
+
+            </LinearLayout>
+            <!-- col 2 end -->
+            <!-- col 3 -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingTop="40dp">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/rounded_button"
+                    android:backgroundTint="#2f942e"
+                    android:padding="6dp"
+                    android:text="Trade"
+                    android:textColor="@color/white"
+                    android:id="@+id/trade_button"/>
+            </LinearLayout>
+        </LinearLayout>
+        <!-- col 3 end -->
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Stats"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:id="@+id/stats_head"
+        android:textColor="@color/black"
+        android:paddingTop="20dp"
+        android:paddingLeft="5dp"
+        android:layout_below="@+id/portfolio_section">
+    </TextView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="60dp"
+        android:id="@+id/stats_section"
+        android:layout_below="@+id/portfolio_section">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <!-- col 1 -->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Open Price: $1065.72"
+                    android:id="@+id/txt_o"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Low Price: $1053.72"
+                    android:id="@+id/txt_l"/>
+
+            </LinearLayout>
+            <!-- col 1 end -->
+            <!-- col 2 -->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="High Price: $1065.72"
+                    android:id="@+id/txt_h"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Prev. Close: $176.25"
+                    android:id="@+id/txt_pc"/>
+
+            </LinearLayout>
+        </LinearLayout>
+        <!-- col 3 end -->
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="About"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:id="@+id/about_head"
+        android:textColor="@color/black"
+        android:paddingTop="20dp"
+        android:paddingLeft="5dp"
+        android:layout_below="@+id/stats_section">
+    </TextView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="60dp"
+        android:id="@+id/about_section"
+        android:layout_below="@+id/stats_section">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <!-- col 1 -->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="IPO Start Date: " />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Industry: " />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Webpage: "/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Company Peers:" />
+        </LinearLayout>
+        <!-- col 1 end -->
+        <!-- col 2 -->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:id="@+id/txt_ipo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:id="@+id/txt_industry" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="https://www.tsla.com"
+                android:id="@+id/txt_webpage"
+                android:autoLink="web"
+                android:linksClickable="true"
+                android:textColorLink="@color/purple_700"/>
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:padding="5dp"-->
+<!--                android:text="Scroll View"-->
+<!--                android:id="@+id/txt_peers"/>-->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txt_peers"
+                    android:orientation="horizontal">
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+
+        </LinearLayout>
+    </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Insights"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:id="@+id/insights_head"
+        android:textColor="@color/black"
+        android:paddingTop="20dp"
+        android:paddingLeft="5dp"
+        android:layout_below="@+id/about_section"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Social Sentiments"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:id="@+id/ss_head"
+        android:textColor="@color/black"
+        android:paddingTop="20dp"
+        android:paddingLeft="5dp"
+        android:layout_below="@+id/insights_head"
+        android:gravity="center"/>
+    <TableLayout
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ss_head"
+        android:layout_marginTop="23dp"
+        android:stretchColumns="*"
+        android:layout_marginLeft="45dp"
+        android:id="@+id/table_view">
+
+        <TableRow>
+
+            <TextView
+                android:padding="3dip"
+                android:text="Apple Inc"
+                android:textStyle="bold"
+                android:background="@drawable/table_border"
+                android:id="@+id/ss_name"/>
+
+            <TextView
+                android:layout_width="60dp"
+                android:gravity="left"
+                android:padding="3dip"
+                android:text="Reddit"
+                android:textStyle="bold"
+                android:background="@drawable/table_border"/>
+
+            <TextView
+                android:layout_width="60dp"
+                android:gravity="left"
+                android:padding="3dip"
+                android:text="Twitter"
+                android:textStyle="bold"
+                android:background="@drawable/table_border"/>
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:padding="3dip"
+                android:text="Total Mentions"
+                android:textStyle="bold"
+                android:background="@drawable/table_border"/>
+
+            <TextView
+                android:layout_width="60dp"
+                android:gravity="left"
+                android:padding="3dip"
+                android:text="1077"
+                android:background="@drawable/table_border_light"
+                android:id="@+id/ss_redtot"/>
+
+            <TextView
+                android:layout_width="60dp"
+                android:gravity="left"
+                android:padding="3dip"
+                android:text="5983"
+                android:background="@drawable/table_border_light"
+                android:id="@+id/ss_twitot"/>
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:padding="3dip"
+                android:text="Positive Mentions"
+                android:textStyle="bold"
+                android:background="@drawable/table_border"/>
+
+            <TextView
+                android:layout_width="60dp"
+                android:gravity="left"
+                android:padding="3dip"
+                android:text="90"
+                android:background="@drawable/table_border_light"
+                android:id="@+id/ss_redpos"/>
+
+            <TextView
+                android:layout_width="60dp"
+                android:gravity="left"
+                android:padding="3dip"
+                android:text="3004"
+                android:background="@drawable/table_border_light"
+                android:id="@+id/ss_twipos"/>
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:padding="3dip"
+                android:text="Negative Mentions"
+                android:textStyle="bold"
+                android:background="@drawable/table_border"/>
+
+            <TextView
+                android:layout_width="60dp"
+                android:gravity="left"
+                android:padding="3dip"
+                android:text="942"
+                android:background="@drawable/table_border_light"
+                android:id="@+id/ss_redneg"/>
+
+            <TextView
+                android:layout_width="60dp"
+                android:gravity="left"
+                android:padding="3dip"
+                android:text="2498"
+                android:background="@drawable/table_border_light"
+                android:id="@+id/ss_twineg"/>
+        </TableRow>
+
+    </TableLayout>
+    <WebView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recChart"
+        android:layout_below="@+id/table_view"
+        tools:ignore="WebViewLayout">
+    </WebView>
+    <WebView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/epsChart"
+        android:layout_below="@+id/recChart"
+        tools:ignore="WebViewLayout">
+
+    </WebView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="News"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:id="@+id/news_head"
+        android:textColor="@color/black"
+        android:paddingTop="20dp"
+        android:paddingLeft="10dp"
+        android:layout_below="@+id/epsChart"/>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="10dp"
+        android:id="@+id/news1"
+        android:layout_below="@+id/news_head">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp">
+            <ImageView
+                android:id="@+id/n_image"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:background="@color/purple_700"/>
+            </androidx.cardview.widget.CardView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
+                <TextView
+                    android:id="@+id/n_source"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textStyle="bold"
+                    android:text="Yahoo"
+                    android:layout_marginHorizontal="10dp"/>
+
+                <TextView
+                    android:id="@+id/n_hours"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="6 hours ago"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/n_headline"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:textStyle="bold"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                android:text="Hello Heloo Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello HelloHello Hello Hello Hello Hello"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/newView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/news1"/>
+
+    </RelativeLayout>
+</RelativeLayout>
+</androidx.core.widget.NestedScrollView>
